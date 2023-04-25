@@ -1,0 +1,63 @@
+@use '/styles/Mixins';
+
+.container{
+    width: 100%;
+    padding: .8rem 0;
+    @include Mixins.flexPos(space-between, center);
+    position: fixed;
+    z-index: 300;
+    background: rgba($color: var(--primary-color), $alpha: .5);
+    backdrop-filter: blur(15px);
+
+    .logo_container{
+        padding-left: 1.6rem;
+    }
+
+    .nav_toggler{
+        width: max(6.4rem);
+        height: max(6.4rem);
+        background: var(--tertier-color);
+        position: relative;
+        padding-inline: 1.6rem;
+        @include Mixins.flexPos(center,center);
+        flex-direction: column;
+        cursor: pointer;
+
+        span{
+            position: absolute;
+            background: var(--secondary-color);
+            width: 4.8rem;
+            height: .6rem;
+            border-radius: 2rem;
+            transition: transform .3s;
+
+            &:first-child{
+                transform: translateY(-200%) rotate(0);
+            }
+
+            &:nth-child(2){
+                width: 3rem;
+                transform: scaleX(1);
+            }
+            &:last-child{
+                transform: translateY(200%) rotate(0);
+            }
+        }
+
+        &.isActive{
+            span{
+                &:first-child{
+                    transform: translateY(0) rotate(45deg);
+                }
+    
+                &:nth-child(2){
+                    transform: scaleX(0);
+                }
+                &:last-child{
+                    transform: translateY(0) rotate(-45deg);
+                }
+            }
+        }
+
+    }
+}
